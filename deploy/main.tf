@@ -143,7 +143,7 @@ resource "null_resource" "install_rook_ceph" {
 
   provisioner "file" {
     content     = data.template_file.cluster_config.rendered
-    destination = "rook/cluster/examples/kubernetes/ceph/cluster-c.yaml"
+    destination = "/tmp/cluster-c.yaml"
   }
 
   provisioner "file" {
