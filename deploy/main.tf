@@ -137,7 +137,6 @@ resource "null_resource" "install_rook_ceph" {
   provisioner "remote-exec" {
     inline = [
       "export KUBECONFIG=~/installer/auth/kubeconfig",
-      "git clone --single-branch --branch release-1.2 https://github.com/rook/rook.git",
       "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node"
     ]
   }
@@ -159,7 +158,7 @@ resource "null_resource" "install_rook_ceph" {
       "/tmp/deployment_scripts/image_registry.sh",
       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
-      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'"
     ]
   }
 }
