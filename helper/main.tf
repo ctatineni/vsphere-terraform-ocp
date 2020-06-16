@@ -124,7 +124,6 @@ resource "null_resource" "configure" {
       "sudo subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms",
       "sudo dnf install ansible -y",
       "test -e /tmp/ocp4-helpernode || git clone ${var.binaries["openshift_helper"]} /tmp/ocp4-helpernode",
-      "git clone --single-branch --branch release-1.2 https://github.com/rook/rook.git",
       "curl -sL -o /tmp/govc.gz ${var.binaries["govc"]}",
       "gunzip /tmp/govc.gz",
       "sudo chmod 755 /tmp/govc",
