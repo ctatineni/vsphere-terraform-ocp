@@ -1,4 +1,6 @@
 export KUBECONFIG=${HOME}/installer/auth/kubeconfig
+git clone --single-branch --branch release-1.2 https://github.com/rook/rook.git
+cp /tmp/cluster-c.yaml rook/cluster/examples/kubernetes/ceph/
 cd rook/cluster/examples/kubernetes/ceph/
 oc create -f common.yaml
 oc create -f operator-openshift.yaml
