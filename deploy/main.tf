@@ -19,7 +19,7 @@ resource "null_resource" "waitfor" {
   provisioner "remote-exec" {
     inline = [
       "/usr/local/bin/openshift-install --dir=installer wait-for bootstrap-complete",
-      "/usr/local/bin/openshift-install --dir=installer wait-for install-complete"
+      "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
     ]
   }
 }
@@ -115,7 +115,7 @@ resource "null_resource" "install_rook_ceph" {
   provisioner "remote-exec" {
     inline = [
       "export KUBECONFIG=~/installer/auth/kubeconfig",
-      "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node"
+      "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node",
     ]
   }
 }
@@ -150,13 +150,13 @@ resource "null_resource" "configure" {
       "/tmp/deployment_scripts/image_registry.sh",
       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
-      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'"
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'",
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
-      "/usr/local/bin/openshift-install --dir=installer wait-for install-complete"
+      "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
     ]
   }
 }
