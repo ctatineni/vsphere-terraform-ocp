@@ -106,20 +106,20 @@ resource "null_resource" "import_cluster" {
     private_key = var.ssh_private_key
   }
 
-  provisioner "file" {
-    content     = data.template_file.import_cluster_config.rendered
-    destination = "/tmp/cluster-import-config.yaml"
-  }
+#   provisioner "file" {
+#     content     = data.template_file.import_cluster_config.rendered
+#     destination = "/tmp/cluster-import-config.yaml"
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "export KUBECONFIG=~/installer/auth/kubeconfig",
-      "cloudctl login -a ${var.mcm_hub_url} -u ${var.mcm_username} -p ${var.mcm_password} --skip-ssl-validation -n kube-system",
-      "cloudctl mc cluster create -f /tmp/cluster-import-config.yaml",
-      "cloudctl mc cluster import ${var.cluster_id} -n ${var.cluster_id} > ./cluster-import.yaml",
-      "oc create -f ./cluster-import.yaml",
-      "oc get pods -n multicluster-endpoint",
-    ]
-  }
+#   provisioner "remote-exec" {
+#     inline = [
+#       "export KUBECONFIG=~/installer/auth/kubeconfig",
+#       "cloudctl login -a ${var.mcm_hub_url} -u ${var.mcm_username} -p ${var.mcm_password} --skip-ssl-validation -n kube-system",
+#       "cloudctl mc cluster create -f /tmp/cluster-import-config.yaml",
+#       "cloudctl mc cluster import ${var.cluster_id} -n ${var.cluster_id} > ./cluster-import.yaml",
+#       "oc create -f ./cluster-import.yaml",
+#       "oc get pods -n multicluster-endpoint",
+#     ]
+#   }
 }
 
