@@ -118,6 +118,7 @@ resource "null_resource" "import_cluster" {
       "cloudctl mc cluster create -f /tmp/cluster-import-config.yaml",
       "cloudctl mc cluster import ${var.cluster_id} -n ${var.cluster_id} > /tmp/cluster-import.yaml",
       "oc create -f /tmp/cluster-import.yaml",
+      "oc get pods -n multicluster-endpoint",
     ]
   }
 }
