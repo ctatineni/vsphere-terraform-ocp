@@ -22,7 +22,7 @@ resource "null_resource" "install_cli" {
       "curl -kLo cloudctl-mc-plugin https://${var.mcm_hub_url}:443/rcm/plugins/mc-linux-amd64",
       "chmod +x cloudctl",
       "sudo mv cloudctl /usr/local/bin",
-      "cloudctl plugin install -f cloudctl-mc-plugin"
+      "cloudctl plugin install -f cloudctl-mc-plugin",
     ] 
   }
 }
@@ -117,7 +117,7 @@ resource "null_resource" "import_cluster" {
       "cloudctl login -a ${var.mcm_hub_url} -u ${var.mcm_username} -p ${var.mcm_password} --skip-ssl-validation -n kube-system",
       "cloudctl mc cluster create -f /tmp/cluster-import-config.yaml",
       "cloudctl mc cluster import ${var.cluster_id} -n ${var.cluster_id} > /tmp/cluster-import.yaml",
-      "oc create -f /tmp/cluster-import.yaml"
+      "oc create -f /tmp/cluster-import.yaml",
     ]
   }
 }
