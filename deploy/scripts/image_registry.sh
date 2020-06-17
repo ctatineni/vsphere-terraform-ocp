@@ -7,9 +7,9 @@ oc create -f operator-openshift.yaml
 oc project rook-ceph
 sleep 2m
 oc create -f cluster-c.yaml
-sleep 5m
+sleep 3m
 oc create -f filesystem.yaml
-sleep 2m
+sleep 1m
 oc create -f csi/rbd/storageclass.yaml
 oc create -f csi/cephfs/storageclass.yaml
 
