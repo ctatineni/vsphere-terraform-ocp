@@ -69,7 +69,7 @@ resource "vsphere_virtual_machine" "helper" {
     inline = [
       "sudo chmod u+x /tmp/terraform_scripts/*.sh",
       "/tmp/terraform_scripts/add-private-ssh-key.sh \"${var.ssh_private_key}\" \"${var.vminfo["username"]}\"",
-      "/tmp/terraform_scripts/add-public-ssh-key.sh \"${var.ssh_public_key}\""
+      "/tmp/terraform_scripts/add-public-ssh-key.sh \"${var.ssh_public_key}\"",
     ]
   }
 }
@@ -128,7 +128,7 @@ resource "null_resource" "configure" {
       "gunzip /tmp/govc.gz",
       "sudo chmod 755 /tmp/govc",
       "sudo mv /tmp/govc /usr/local/bin/",
-      "sudo mkdir /run/haproxy"
+      "sudo mkdir /run/haproxy",
     ]
   }
 
@@ -145,13 +145,13 @@ resource "null_resource" "configure" {
   provisioner "remote-exec" {
     inline = [
       "cd /tmp/ocp4-helpernode",
-      "sudo ansible-playbook -e @vars.yaml tasks/main.yml"
+      "sudo ansible-playbook -e @vars.yaml tasks/main.yml",
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
-      "if [[ \"${var.airgapped}\" == \"true\" ]]; then /tmp/terraform_scripts/registry.sh; fi"
+      "if [[ \"${var.airgapped}\" == \"true\" ]]; then /tmp/terraform_scripts/registry.sh; fi",
     ]
   }
 
