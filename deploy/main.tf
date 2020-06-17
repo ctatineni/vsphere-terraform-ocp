@@ -134,33 +134,33 @@ resource "null_resource" "install_rook_ceph" {
     private_key = var.ssh_private_key
   }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "export KUBECONFIG=~/installer/auth/kubeconfig",
-#       "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node"
-#     ]
-#   }
+  provisioner "remote-exec" {
+    inline = [
+      "export KUBECONFIG=~/installer/auth/kubeconfig",
+      "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node"
+    ]
+  }
 
-#   provisioner "file" {
-#     content     = data.template_file.cluster_config.rendered
-#     destination = "/tmp/cluster-c.yaml"
-#   }
+  provisioner "file" {
+    content     = data.template_file.cluster_config.rendered
+    destination = "/tmp/cluster-c.yaml"
+  }
 
-#   provisioner "file" {
-#     source      = "${path.module}/scripts"
-#     destination = "/tmp/deployment_scripts"
-#   }
+  provisioner "file" {
+    source      = "${path.module}/scripts"
+    destination = "/tmp/deployment_script"
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "export KUBECONFIG=~/installer/auth/kubeconfig",
-#       "sudo chmod u+x /tmp/deployment_scripts/*.sh",
-#       "/tmp/deployment_scripts/image_registry.sh",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'"
-#     ]
-#   }
+  provisioner "remote-exec" {
+    inline = [
+      "export KUBECONFIG=~/installer/auth/kubeconfig",
+      "sudo chmod u+x /tmp/deployment_script/*.sh",
+      "/tmp/deployment_script/image_registry.sh",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'"
+    ]
+  }
 }
 resource "null_resource" "configure" {
 
