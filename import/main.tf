@@ -94,7 +94,7 @@ locals {
 }
 
 resource "null_resource" "import_cluster" {
-#   count = local.import_cluster ? 1 : 0
+  count = local.import_cluster ? 1 : 0
   depends_on = [
     null_resource.install_cli
   ]
