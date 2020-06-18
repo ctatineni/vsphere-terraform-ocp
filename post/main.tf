@@ -30,8 +30,8 @@ resource "null_resource" "approve_certs" {
 
 
 locals {
-  install_api_certificate = var.api_certificate != null && var.api_certificate_key != null && var.cluster_id != null && var.base_domain != null
-  install_apps_certficate = var.custom_ca_bundle != null && var.apps_certificate != null && var.apps_certificate_key != null
+  install_api_certificate = var.api_certificate != "null" && var.api_certificate_key != "null" && var.cluster_id != "null" && var.base_domain != "null"
+  install_apps_certficate = var.custom_ca_bundle != "null" && var.apps_certificate != "null" && var.apps_certificate_key != "null"
 }
 
 resource "null_resource" "install_api_certificate" {
