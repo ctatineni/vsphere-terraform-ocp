@@ -90,7 +90,7 @@ EOF
 }
 
 locals {
-  import_cluster = var.mcm_hub_url != null && var.mcm_username != null && var.mcm_password != null
+  import_cluster = var.mcm_hub_url != "null" && var.mcm_username != "null" && var.mcm_password != "null"
 }
 
 resource "null_resource" "import_cluster" {
