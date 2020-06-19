@@ -39,6 +39,8 @@ resource "null_resource" "waitfor_cluster" {
       "sleep 2m",
       "export KUBECONFIG=~/installer/auth/kubeconfig",
       "oc get csr -o name | xargs oc adm certificate approve",
+      "sleep 2m",
+      "oc get csr -o name | xargs oc adm certificate approve",
       "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
     ]
   }
