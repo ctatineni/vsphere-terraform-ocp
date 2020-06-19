@@ -244,7 +244,7 @@ module "bootstrap" {
 module "master" {
   source = "./nodes"
   dependson = [
-    module.bootstrap.module_completed
+    module.ignition.module_completed
   ]
   vminfo               = var.master
   vmtype               = "master"
@@ -260,7 +260,7 @@ module "master" {
 module "worker" {
   source = "./nodes"
   dependson = [
-    module.bootstrap.module_completed
+    module.ignition.module_completed
   ]
   vminfo               = var.worker
   vmtype               = "worker"
@@ -277,7 +277,7 @@ module "storage" {
   source       = "./storage"
   count_offset = var.worker["count"]
   dependson = [
-    module.bootstrap.module_completed
+    module.ignition.module_completed
   ]
   vminfo               = var.storage
   vmtype               = "worker"
