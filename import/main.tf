@@ -17,7 +17,7 @@ resource "null_resource" "install_cli" {
 
   provisioner "remote-exec" {
     inline = [
-      "export KUBECONFIG=~/installer/auth/kubeconfig",
+      "export KUBECONFIG=~/installer/kubeconfig",
       "curl -kLo cloudctl https://${var.mcm_hub_url}:443/api/cli/cloudctl-linux-amd64",
       "curl -kLo cloudctl-mc-plugin https://${var.mcm_hub_url}:443/rcm/plugins/mc-linux-amd64",
       "chmod +x cloudctl",
@@ -114,9 +114,9 @@ resource "null_resource" "import_cluster" {
 
   provisioner "remote-exec" {
     inline = [
-      "export KUBECONFIG=~/installer/auth/kubeconfig",
       "cloudctl mc cluster create -f /tmp/cluster-import-config.yaml",
       "cloudctl mc cluster import ${var.cluster_id} -n ${var.cluster_id} > ./cluster-import.yaml",
+      "export KUBECONFIG=~/installer/auth/kubeconfig",
       "oc create -f ./cluster-import.yaml",
       "oc get pods -n multicluster-endpoint",
     ]
