@@ -174,9 +174,9 @@ resource "null_resource" "configure" {
     ]
   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
-    ]
-  }
+#   provisioner "remote-exec" {
+#     inline = [
+#       "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
+#     ]
+#   }
 }
