@@ -19,6 +19,26 @@ resource "null_resource" "waitfor" {
   provisioner "remote-exec" {
     inline = [
       "/usr/local/bin/openshift-install --dir=installer wait-for bootstrap-complete",
+    ]
+  }
+}
+
+resource "null_resource" "waitfor_cluster" {
+  depends_on = [
+    null_resource.waitfor
+  ]
+  connection {
+    host        = var.helper_public_ip
+    user        = var.helper["username"]
+    password    = var.helper["password"]
+    private_key = var.ssh_private_key
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 2m",
+      "export KUBECONFIG=~/installer/auth/kubeconfig",
+      "oc get csr -o name | xargs oc adm certificate approve",
       "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
     ]
   }
@@ -102,7 +122,7 @@ EOF
 resource "null_resource" "install_rook_ceph" {
   count = var.storage["count"]
   depends_on = [
-    null_resource.waitfor
+    null_resource.waitfor_cluster
   ]
 
   connection {
