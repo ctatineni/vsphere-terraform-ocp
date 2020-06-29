@@ -119,7 +119,7 @@ resource "null_resource" "configure" {
     inline = [
       "set -x",
       "sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm -y",
-      "sudo dnf update",
+      "sudo dnf update -y",
       "sudo dnf install git -y",
       "sudo subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms",
       "sudo dnf install ansible -y",
