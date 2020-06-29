@@ -66,12 +66,12 @@ variable "vsphere_resource_pool" {
 variable "binaries" {
   type = map(string)
   default = {
-    openshift_iso       = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.3/4.3.8/rhcos-4.3.8-x86_64-installer.x86_64.iso"
-    openshift_bios      = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.3/4.3.8/rhcos-4.3.8-x86_64-metal.x86_64.raw.gz"
-    openshift_kernel    = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.3/4.3.8/rhcos-4.3.8-x86_64-installer-kernel-x86_64"
-    openshift_initramfs = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.3/4.3.8/rhcos-4.3.8-x86_64-installer-initramfs.x86_64.img"
-    openshift_client    = "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.3.8/openshift-client-linux.tar.gz"
-    openshift_installer = "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.3.8/openshift-install-linux.tar.gz"
+    openshift_iso       = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.4/4.4.3/rhcos-4.4.3-x86_64-installer.x86_64.iso"
+    openshift_bios      = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.4/4.4.3/rhcos-4.4.3-x86_64-metal.x86_64.raw.gz"
+    openshift_kernel    = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.4/4.4.3/rhcos-4.4.3-x86_64-installer-kernel-x86_64"
+    openshift_initramfs = "https://mirror.openshift.com/pub/openshift-v4/x86_64/dependencies/rhcos/4.4/4.4.3/rhcos-4.4.3-x86_64-installer-initramfs.x86_64.img"
+    openshift_client    = "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.4.10/openshift-client-linux.tar.gz"
+    openshift_installer = "https://mirror.openshift.com/pub/openshift-v4/x86_64/clients/ocp/4.4.10/openshift-install-linux.tar.gz"
     openshift_helper    = "https://github.com/ctatineni/ocp4-helpernode"
     govc                = "https://github.com/vmware/govmomi/releases/download/v0.22.1/govc_linux_amd64.gz"
   }
