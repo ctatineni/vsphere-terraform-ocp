@@ -272,41 +272,6 @@ variable "custom_ca_bundle" {
   default = null
 }
 
-variable "private_registry_enabled" {
-  type    = string
-  default = false
-}
-
-variable "docker_username" {
-  type    = string
-  default = null
-}
-
-variable "docker_password" {
-  type    = string
-  default = null
-}
-
-variable "imageRegistry" {
-  type    = string
-  default = null
-}
-
-variable "mcm_hub_url" {
-  type    = string
-  default = null
-}
-
-variable "mcm_username" {
-  type    = string
-  default = null
-}
-
-variable "mcm_password" {
-  type    = string
-  default = null
-}
-
 variable "airgapped" {
   type    = string
   default = false

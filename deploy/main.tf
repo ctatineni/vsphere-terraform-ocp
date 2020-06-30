@@ -137,6 +137,7 @@ resource "null_resource" "install_rook_ceph" {
   provisioner "remote-exec" {
     inline = [
       "export KUBECONFIG=~/installer/auth/kubeconfig",
+      "oc get csr -o name | xargs oc adm certificate approve",
       "oc label node ${var.storage_hostnames[count.index]}.${var.cluster_id}.${var.base_domain} role=storage-node",
     ]
   }
