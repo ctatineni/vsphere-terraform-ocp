@@ -13,7 +13,7 @@ curl -u openshift:password -k https://helper.ctocp44.ocp.csplab.local:5000/v2/_c
 sudo podman login -u openshift -p password --authfile $HOME/pullsecret_config.json helper.ctocp44.ocp.csplab.local:5000
 jq -c --argjson var "$(jq .auths $HOME/pullsecret_config.json)" '.auths += $var' $HOME/ocp_pullsecret.json > $HOME/merged_pullsecret.json
 
-export OCP_RELEASE=4.4.10-x86_64
+export OCP_RELEASE=4.4.12-x86_64
 export LOCAL_REGISTRY='helper.ctocp44.ocp.csplab.local:5000' 
 export LOCAL_REPOSITORY='ocp4/openshift4' 
 export PRODUCT_REPO='openshift-release-dev' 
