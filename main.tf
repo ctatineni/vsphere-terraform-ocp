@@ -333,13 +333,13 @@ module "post" {
 }
 
 resource "vsphere_folder" "folder" {
-  path          = "CP4AS/${var.openshift_cluster_id}"
+  path          = var.openshift_cluster_id
   type          = "vm"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
 resource "vsphere_resource_pool" "pool" {
   name                    = var.openshift_cluster_id
-  parent_resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
+  parent_resource_pool_id = "${data.vsphere_compute_cluster.cluster.resource_pool_id}/ctatineni}"
 }
 
