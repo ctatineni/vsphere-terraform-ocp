@@ -20,6 +20,11 @@ data "vsphere_datastore" "node" {
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
+data "vsphere_resource_pool" "parent" {
+  name                    = "ctatineni"
+  parent_resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
+}
+
 data "vsphere_datastore" "images" {
   name          = var.vsphere_image_datastore
   datacenter_id = data.vsphere_datacenter.datacenter.id
@@ -336,11 +341,6 @@ resource "vsphere_folder" "folder" {
   path          = "Sandbox/ctatineni/${var.openshift_cluster_id}"
   type          = "vm"
   datacenter_id = data.vsphere_datacenter.datacenter.id
-}
-
-resource "vsphere_resource_pool" "parent" {
-  name                    = "ctatineni"
-  parent_resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
 }
 
 resource "vsphere_resource_pool" "pool" {
