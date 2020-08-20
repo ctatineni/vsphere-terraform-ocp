@@ -21,7 +21,7 @@ data "vsphere_datastore" "node" {
 }
 
 data "vsphere_resource_pool" "parent" {
-  name                    = "Sandbox3/ctatineni"
+  name                    = "ctatineni"
   datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
