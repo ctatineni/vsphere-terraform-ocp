@@ -22,7 +22,6 @@ data "vsphere_datastore" "node" {
 
 data "vsphere_resource_pool" "parent" {
   name                    = "ctatineni"
-  parent_resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
 }
 
 data "vsphere_datastore" "images" {
