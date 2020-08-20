@@ -345,7 +345,7 @@ resource "vsphere_folder" "folder" {
 
 resource "vsphere_resource_pool" "pool" {
   name                    = var.openshift_cluster_id
-  parent_resource_pool_id = data.vsphere_resource_pool.parent.resource_pool_id
+  parent_resource_pool_id = data.vsphere_resource_pool.parent.id
 }
       
       
