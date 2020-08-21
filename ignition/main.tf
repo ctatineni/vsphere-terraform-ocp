@@ -38,10 +38,10 @@ sshKey: '${var.ssh_public_key}'
   CERTDATA
 imageContentSources:
 - mirrors:
-  - helper.ctocp44.ocp.csplab.local:5000/ocp4/openshift4
+  - HOSTNAME:5000/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-release
 - mirrors:
-  - helper.ctocp44.ocp.csplab.local:5000/ocp4/openshift4
+  - HOSTNAME:5000/ocp4/openshift4
   source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
 %{endif}
 EOF
@@ -71,6 +71,8 @@ resource "null_resource" "generate_ignition" {
       "PULL_SECRET=$(cat /home/sysadmin/ocp_pullsecret.json)",
       "if [[ \"${var.airgapped}\" == \"true\" ]]; then PULL_SECRET=$(cat /home/sysadmin/merged_pullsecret.json); fi",
       "sed -i \"s/PULL_SECRET/$PULL_SECRET/g\" /tmp/install-config.yaml",
+      "if [[ \"${var.airgapped}\" == \"true\" ]]; then HOSTNAME=$(hostname -f); fi",
+      "if [[ \"${var.airgapped}\" == \"true\" ]]; then sed -i \"s/HOSTNAME/$HOSTNAME/g\" /tmp/install-config.yaml; fi",
       "if [[ \"${var.airgapped}\" == \"true\" ]]; then cp /opt/registry/certs/domain.crt ./ ; fi",
       "if [[ \"${var.airgapped}\" == \"true\" ]]; then sed -i -e 's/^/   /g' ./domain.crt; fi",
       "if [[ \"${var.airgapped}\" == \"true\" ]]; then awk '/CERTDATA/{system(\"cat ./domain.crt\");next}1' /tmp/install-config.yaml > ./install-config.yaml; fi",
