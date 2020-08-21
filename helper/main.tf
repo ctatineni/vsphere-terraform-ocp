@@ -4,7 +4,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "helper" {
-  name             = "helper"
+  name             = "${var.cluster_id}-helper"
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
   folder           = var.folder_id
@@ -35,7 +35,7 @@ resource "vsphere_virtual_machine" "helper" {
 
     customize {
       linux_options {
-        host_name = "${var.cluster_id}-helper"
+        host_name = "helper"
         domain    = "${var.cluster_id}.${var.base_domain}"
       }
 
