@@ -4,7 +4,7 @@ data "vsphere_virtual_machine" "template" {
 }
 
 resource "vsphere_virtual_machine" "helper" {
-  name             = "${var.cluster_id}-helper"
+  name             = "helper"
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
   folder           = var.folder_id
