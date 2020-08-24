@@ -9,8 +9,8 @@ resource "vsphere_virtual_machine" "vm" {
   depends_on = [
     null_resource.dependency
   ]
-  wait_for_guest_net_timeout = 20
-  wait_for_guest_ip_timeout = 20
+  wait_for_guest_net_timeout = 40
+  wait_for_guest_ip_timeout = 40
   name             = "${var.cluster_id}-${var.vmtype}-${count.index + var.count_offset + 1}"
   resource_pool_id = var.resource_pool_id
   datastore_id     = var.datastore_id
