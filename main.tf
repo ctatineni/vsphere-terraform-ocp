@@ -265,7 +265,7 @@ module "master" {
 module "worker" {
   source = "./nodes"
   dependson = [
-    module.bootstrap.module_completed
+    module.master.module_completed
   ]
   vminfo               = var.worker
   vmtype               = "worker"
@@ -282,7 +282,7 @@ module "storage" {
   source       = "./storage"
   count_offset = var.worker["count"]
   dependson = [
-    module.bootstrap.module_completed
+    module.master.module_completed
   ]
   vminfo               = var.storage
   vmtype               = "worker"
@@ -297,6 +297,7 @@ module "storage" {
 
 module "deploy" {
   dependson = [
+    module.createisos.module_completed,
     module.ignition.module_completed,
     module.master.module_completed,
     module.worker.module_completed,
