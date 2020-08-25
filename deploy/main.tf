@@ -36,10 +36,10 @@ resource "null_resource" "waitfor_cluster" {
 
   provisioner "remote-exec" {
     inline = [
-      "sleep 3m",
+      "sleep 5m",
       "export KUBECONFIG=~/installer/auth/kubeconfig",
       "oc get csr -o name | xargs oc adm certificate approve",
-      "sleep 3m",
+      "sleep 5m",
       "oc get csr -o name | xargs oc adm certificate approve",
       "/usr/local/bin/openshift-install --dir=installer wait-for install-complete",
     ]
