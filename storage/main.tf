@@ -19,6 +19,7 @@ resource "vsphere_virtual_machine" "vm" {
   num_cpus = var.vminfo["cpu"]
   memory   = var.vminfo["memory"]
   guest_id = "other3xLinux64Guest"
+  nested_hv_enabled = true
 
   network_interface {
     network_id = var.network_id
