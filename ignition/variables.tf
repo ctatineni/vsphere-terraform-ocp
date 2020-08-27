@@ -87,3 +87,17 @@ variable "airgapped" {
   type    = string
   default = false
 }
+
+variable "use_proxy" {
+  type    = bool
+  default = false
+}
+
+variable "proxy" {
+  type = map(string)
+  default = {
+    http_proxy  = 
+    https_proxy    = 
+    no_proxy = 
+  }
+}
