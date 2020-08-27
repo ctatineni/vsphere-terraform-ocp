@@ -276,3 +276,17 @@ variable "airgapped" {
   type    = string
   default = false
 }
+
+variable "use_proxy" {
+  type    = bool
+  default = false
+}
+
+variable "proxy" {
+  type = map(string)
+  default = {
+    http_proxy  =  #<username>:<pswd>@<ip>:<port> 
+    https_proxy    =  #<username>:<pswd>@<ip>:<port> 
+    no_proxy = #.cluster-base-deomain
+  }
+}
