@@ -229,6 +229,8 @@ module "ignition" {
   pull_secret         = var.openshift_pull_secret
   registry_certificate = var.registry_certificate
   airgapped          = var.airgapped
+  use_proxy           = var.use_proxy
+  proxy               = var.proxy
 }
 
 module "bootstrap" {
