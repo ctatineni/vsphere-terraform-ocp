@@ -34,6 +34,11 @@ platform:
     defaultDatastore: ${var.vsphere_datastore}
 pullSecret: 'PULL_SECRET'
 sshKey: '${var.ssh_public_key}'
+%{if var.use_proxy}proxy:
+  httpProxy: ${var.proxy["http_proxy"]}
+  httpsProxy: ${var.proxy["https_proxy"]}
+  noProxy: ${var.proxy["no_proxy"]}
+%{endif}
 %{if var.airgapped}additionalTrustBundle: |
   CERTDATA
 imageContentSources:
