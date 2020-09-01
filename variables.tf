@@ -285,8 +285,8 @@ variable "use_proxy" {
 variable "proxy" {
   type = map(string)
   default = {
-    http_proxy  = 
-    https_proxy    =  
-    no_proxy = 
+    http_proxy  = ""
+    https_proxy    = "" 
+    no_proxy = ""
   }
 }
