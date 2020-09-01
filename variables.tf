@@ -285,8 +285,8 @@ variable "use_proxy" {
 variable "proxy" {
   type = map(string)
   default = {
-    http_proxy  =  #http://<username>:<pswd>@<ip>:<port> 
-    https_proxy    =  #http://<username>:<pswd>@<ip>:<port> 
-    no_proxy = #.cluster-base-deomain
+    http_proxy  = 
+    https_proxy    =  
+    no_proxy = 
   }
 }
