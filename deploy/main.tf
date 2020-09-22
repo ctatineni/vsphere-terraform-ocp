@@ -170,11 +170,12 @@ resource "null_resource" "configure" {
   provisioner "remote-exec" {
     inline = [
       "export KUBECONFIG=~/installer/auth/kubeconfig",
-#       "sudo chmod u+x /tmp/deployment_scripts/*.sh",
+      "sudo chmod u+x /tmp/deployment_scripts/*.sh",
+      "/tmp/deployment_scripts/deploy.sh",
 #       "/tmp/deployment_scripts/image_registry.sh",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
-#       "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\":{\"storage\":{\"pvc\":{}}}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"defaultRoute\":true}}'",
+      "oc patch configs.imageregistry.operator.openshift.io cluster --type merge --patch '{\"spec\": {\"managementState\":\"Managed\"}}'",
     ]
   }
 
